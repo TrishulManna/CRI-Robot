@@ -90,6 +90,7 @@
                                 <li>
                                     <?php if(\App\RoleUsers::where('user_id', Auth::id())->first()->role_id <= 2): ?>
                                     <a href="<?php echo e(asset('/requestoverview')); ?>">Request Overview</a>
+                                    <a href="<?php echo e(asset('/requestoverview')); ?>">Organisatie</a>
                                     <?php endif; ?>
                                     <a href="<?php echo e(asset('/logout')); ?>" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         Logout

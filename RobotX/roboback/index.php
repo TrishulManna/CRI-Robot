@@ -3,4 +3,4 @@
 /*
  * Go to the start of the RobotRental website
  */
- header("Location: /RobotX/roboback/public/login");
+ header("Location: /roboback/public/login");

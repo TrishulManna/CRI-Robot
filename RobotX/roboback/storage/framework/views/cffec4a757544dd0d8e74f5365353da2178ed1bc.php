@@ -1,7 +1,4 @@
-@extends('layouts.app')
-
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -20,28 +17,28 @@
                                 
                             </tr>
 
-                                    @foreach($request as $data)
-                                          <tr class="bhv-row" id="data-info{{ $data->id }}">
+                                    <?php $__currentLoopData = $request; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+                                          <tr class="bhv-row" id="data-info<?php echo e($data->id); ?>">
                                               <td class="data-name">
-                                                <p>{{$data->name}}</p>
+                                                <p><?php echo e($data->name); ?></p>
                                               </td>
                                               <td class="data-phonenumber">
-                                                <p>{{$data->phonenumber}}</p>
+                                                <p><?php echo e($data->phonenumber); ?></p>
                                               </td>
                                               <td class="data-email">
-                                                <p>{{$data->email}}</p>
+                                                <p><?php echo e($data->email); ?></p>
                                               </td>
                                               <td class="data-company">
-                                                <p>{{$data->company}}</p>
+                                                <p><?php echo e($data->company); ?></p>
                                               </td>
                                               <td class="data-address">
-                                                <p>{{$data->address}}</p>
+                                                <p><?php echo e($data->address); ?></p>
                                               </td>
                                               <td class="data-postalcode">
-                                                <p>{{$data->postalcode}}</p>
+                                                <p><?php echo e($data->postalcode); ?></p>
                                               </td>
                                               <td>
-                                              <a href="{{ route('requests.destroy', $data->id) }}" class="remove-confirm">
+                                              <a href="<?php echo e(route('requests.destroy', $data->id)); ?>" class="remove-confirm">
                                                   <i class="fa fa-trash pull-right list-icon"></i>
                                               </a>
                                               </td>
@@ -49,7 +46,7 @@
 
 
                                           </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
 
 
                         </table>
@@ -60,4 +57,6 @@
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

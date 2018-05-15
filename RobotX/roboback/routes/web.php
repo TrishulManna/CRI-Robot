@@ -46,14 +46,30 @@ Route::get('users', function() {
 });
 */
 
-/* Door Quentin geschreven*/
+/* Door Quentin geschreven
 Route::get('/requestform', function() {
     return view('requestform');
 });
 Route::get('requestoverview', 'RequestformController@index');
 Route::get('requests', 'RequestformController@index');
 Route::post('/requestform', 'RequestformController@create')->name('requestform_submit');
-//
+*/
+
+/* Door Quentin geschreven*/
+Route::get('/requestform', function () {
+    return view('requestform');
+});
+
+Route::get('requestoverview', 'RequestformController@index');
+
+Route::resource('requests', 'RequestformController');
+
+Route::get('requests', 'RequestformController@index');
+
+Route::post('/requestform', 'RequestformController@create')->name('requestform_submit');
+
+Route::delete('/requests/{request_id}', 'RequestformController@destroy');
+/* Door Quentin geschreven*/
 
 Route::get('/icons/{project_id}/link/', 'IconsController@link')->name('icons.link');
 Route::post('/icons/savelink/', 'IconsController@savelink')->name('icons.savelink');
@@ -71,6 +87,8 @@ Route::post('/behaviors/savelink/', 'BehaviorsController@savelink')->name('behav
 Route::get('/behaviors/{behavior_id}/icons/', 'BehaviorsController@icons')->name('behaviors.icons');
 Route::post('/behaviors/saveicon/', 'BehaviorsController@saveicon')->name('behaviors.saveicon');
 Route::post('/behaviors/savevideo/', 'BehaviorsController@savevideo')->name('behaviors.savevideo');
+Route::get('/behaviors/approved/{id}', 'BehaviorsController@approved')->name('BehaviorsController.approved');
+Route::get('/behaviors/declined/{id}', 'BehaviorsController@declined')->name('BehaviorsController.declined');
 
 Route::delete('/projects/deletebehavior/{behavior_id}/{project_id}', 'ProjectsController@deleteBehavior')->name('projects.deletebehavior');
 

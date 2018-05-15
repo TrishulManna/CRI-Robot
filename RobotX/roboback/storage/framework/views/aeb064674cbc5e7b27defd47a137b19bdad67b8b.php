@@ -3,11 +3,13 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">Request</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="<?php echo e(asset('/register')); ?>">
+                    <form class="form-horizontal" role="form" method="POST" action="<?php echo e(route('requestform_submit')); ?>">
                         <?php echo e(csrf_field()); ?>
 
+
+                        <label class="col-md-9 control-label">Step 1: Enter your Contact Information</label></br></br>
 
                         <div class="form-group<?php echo e($errors->has('name') ? ' has-error' : ''); ?>">
                             <label for="name" class="col-md-4 control-label">Name</label>
@@ -18,6 +20,20 @@
                                 <?php if($errors->has('name')): ?>
                                     <span class="help-block">
                                         <strong><?php echo e($errors->first('name')); ?></strong>
+                                    </span>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+
+                        <div class="form-group<?php echo e($errors->has('phonenumber') ? ' has-error' : ''); ?>">
+                            <label for="phonenumber" class="col-md-4 control-label">Phone number</label>
+
+                            <div class="col-md-6">
+                                <input id="phonenumber" type="text" class="form-control" name="phonenumber" value="<?php echo e(old('phonenumber')); ?>" required>
+
+                                <?php if($errors->has('phonenumber')): ?>
+                                    <span class="help-block">
+                                        <strong><?php echo e($errors->first('phonenumber')); ?></strong>
                                     </span>
                                 <?php endif; ?>
                             </div>
@@ -37,57 +53,56 @@
                             </div>
                         </div>
 
-                        <div class="form-group<?php echo e($errors->has('password') ? ' has-error' : ''); ?>">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                        <label class="col-md-9 control-label">Step 2: Enter your Company Information</label></br></br>
+
+                        <div class="form-group<?php echo e($errors->has('company') ? ' has-error' : ''); ?>">
+                            <label for="company" class="col-md-4 control-label">Company</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="company" type="text" class="form-control" name="company" value="<?php echo e(old('company')); ?>" required>
 
-                                <?php if($errors->has('password')): ?>
+                                <?php if($errors->has('company')): ?>
                                     <span class="help-block">
-                                        <strong><?php echo e($errors->first('password')); ?></strong>
+                                        <strong><?php echo e($errors->first('company')); ?></strong>
                                     </span>
                                 <?php endif; ?>
                             </div>
                         </div>
 
-                        <div class="form-group<?php echo e($errors->has('password_confirmation') ? ' has-error' : ''); ?>">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                        <div class="form-group<?php echo e($errors->has('address') ? ' has-error' : ''); ?>">
+                            <label for="address" class="col-md-4 control-label">Address</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="address" type="text" class="form-control" name="address" value="<?php echo e(old('address')); ?>" required>
 
-                                <?php if($errors->has('password_confirmation')): ?>
+                                <?php if($errors->has('address')): ?>
                                     <span class="help-block">
-                                        <strong><?php echo e($errors->first('password_confirmation')); ?></strong>
+                                        <strong><?php echo e($errors->first('address')); ?></strong>
                                     </span>
                                 <?php endif; ?>
                             </div>
                         </div>
 
-                        <!-- Added field for roles-->
-                        <div class="form-group<?php echo e($errors->has('role') ? ' has-error' : ''); ?>">
-                            <label for="role" class="col-md-4 control-label">User role</label>
+
+                        <div class="form-group<?php echo e($errors->has('postalcode') ? ' has-error' : ''); ?>">
+                            <label for="postalcode" class="col-md-4 control-label">Postal code</label>
 
                             <div class="col-md-6">
-                                <select id="role" class="form-control" name="role" required>
-                                <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $id => $role): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                                    <option value="<?php echo e($id); ?>"><?php echo e($role); ?></option>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
-                                </select>
+                                <input id="Postal" type="text" class="form-control" name="postalcode" value="<?php echo e(old('postalcode')); ?>" required>
 
-                                <?php if($errors->has('role')): ?>
+                                <?php if($errors->has('postalcode')): ?>
                                     <span class="help-block">
-                                        <strong><?php echo e($errors->first('role')); ?></strong>
+                                        <strong><?php echo e($errors->first('postalcode')); ?></strong>
                                     </span>
                                 <?php endif; ?>
                             </div>
                         </div>
-                        
+
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Register
+                                    Request
                                 </button>
                             </div>
                         </div>

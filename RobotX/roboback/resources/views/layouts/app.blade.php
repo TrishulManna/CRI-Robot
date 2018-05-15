@@ -90,6 +90,7 @@
                                 <li>
                                     @if(\App\RoleUsers::where('user_id', Auth::id())->first()->role_id <= 2)
                                     <a href="{{ asset('/requestoverview') }}">Request Overview</a>
+                                    <a href="{{ asset('/requestoverview') }}">Organisatie</a>
                                     @endif
                                     <a href="{{ asset('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         Logout

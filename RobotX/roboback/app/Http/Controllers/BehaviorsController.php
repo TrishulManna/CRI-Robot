@@ -256,6 +256,22 @@ class BehaviorsController extends Controller
         }
     }
 
+    public function approved(Request $request, $id)
+    {
+      $behavior = App\Behavior::where('id', $id)->first();
+      $behavior->accepted = 1;
+      $behavior->save();
+      return redirect('/behaviors');
+    }
+
+    public function declined (request $request, $id)
+    {
+      $deletedRows = App\Behavior::where('id', $id)->first();
+      $deletedRows->declined = 0;
+      $deletedRows->delete();
+      return redirect ('/behaviors');
+    }
+
     public function destroy(Request $request, $behavior_id)
     {
         try {

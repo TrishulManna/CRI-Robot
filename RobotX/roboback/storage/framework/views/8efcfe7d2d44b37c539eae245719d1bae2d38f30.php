@@ -1,6 +1,4 @@
-@extends ('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -9,7 +7,7 @@
             <div class="panel-body">
               <p class="list-header">
                 <span class="user-header">Users</span>
-                <a href="{{ route('users.create') }}" class="btn btn-default align-right">
+                <a href="<?php echo e(route('users.create')); ?>" class="btn btn-default align-right">
                     <i class="fa fa-plus action-icon" title="New User"></i>
                 </a>
               </p>
@@ -26,35 +24,37 @@
                   <th>Bedrijfsnaam</th>
                   <th>Created at</th>
                   </tr>
-                @if(!$users->count())
+                <?php if(!$users->count()): ?>
                   <tr>
                     <td colspan="4">No Users added yet.</td>
                   </tr>
-                @endif
+                <?php endif; ?>
 
-                @foreach($users as $user)
+                <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
                 <tr>
                     <td class="robot-actions">
-                        <a href="{{ route('users.edit', $user->id) }}">
+                        <a href="<?php echo e(route('users.edit', $user->id)); ?>">
                             <i class="fa fa-pencil pull-left list-icon"></i>
                         </a>
-                        <a href="{{ route('users.destroy', $user->id) }}" class="remove-confirm">
+                        <a href="<?php echo e(route('users.destroy', $user->id)); ?>" class="remove-confirm">
                             <i class="fa fa-trash pull-right list-icon"></i>
                         </a>
                         <a href="edit.blade.php"></a>
                     </td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->telefoonnummer }}</td>
-                    <td>{{ $user->adres }}</td>
-                    <td>{{ $user->bedrijfsnaam }}</td>
-                    <td>{{ $user->created_at }}</td>
+                    <td><?php echo e($user->name); ?></td>
+                    <td><?php echo e($user->email); ?></td>
+                    <td><?php echo e($user->telefoonnummer); ?></td>
+                    <td><?php echo e($user->adres); ?></td>
+                    <td><?php echo e($user->bedrijfsnaam); ?></td>
+                    <td><?php echo e($user->created_at); ?></td>
                 </tr>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
               </table>
             </div>
           </div>
         </div>
       </div>
     </div>
-  @endsection
+  <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

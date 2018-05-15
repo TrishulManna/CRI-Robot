@@ -95,15 +95,25 @@
                                     <td class="bhv-base" style="display: none">{{ $behavior->basemenu  }}</td>
                                     <td class="bhv-rbts" style="display: none">{{ $behavior->robots }}</td>
 
-                                    <!--New buttons for accepted table-->
+                                    <!--New buttons for accepted table
                                     <th>
                                         @if(\App\RoleUsers::where('user_id', Auth::id())->first()->role_id <= 2)
                                             <button type="button" value= 1 id="approved" class="btn btn-success response"><i class="fa fa-check">
-                                            </i>Accept</button>  <button type="button" value= 0 id="declined" class="btn btn-danger response">
-                                            <i class="fa fa-times"></i>Decline</button>
+                                            </i>Accept</button> 
+                                            <button type="button" value= 0 id="declined" class="btn btn-danger response">
+                                            <i class="fa fa-times">
+                                            </i>Decline</button>
                                         @endif
+                                    </th>                                    
+                                    -->
+                                    <th>
+                                        <a href="{{ route('BehaviorsController.approved', $behavior->id) }}" class="btn btn-success response">
+                                        <i class="fa fa-check"></i> Approve</a>
+
+                                        <a href="{{ route('BehaviorsController.declined', $behavior->id) }}" class="btn btn-danger response">
+                                        <i class="fa fa-times"></i>Decline</a>
                                     </th>
-                                    
+
                                 </tr>
                             @endforeach
                         </table>
