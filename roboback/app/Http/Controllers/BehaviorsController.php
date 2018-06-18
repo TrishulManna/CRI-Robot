@@ -52,7 +52,7 @@ class BehaviorsController extends Controller
 
     public function index()
     {
-        $behaviors = App\Behavior::orderBy('name', 'asc')->get();
+        $behaviors = App\Behavior::orderBy('created_at', 'desc')->get();
         $robots    = App\Robot::orderBy('name', 'asc')->get();
 
         return view('behaviors.index')->withBehaviors($behaviors)->withLanguages($this->languages)->withRobots($robots);
@@ -258,6 +258,7 @@ class BehaviorsController extends Controller
 
     public function approved(Request $request, $id)
     {
+
       $behavior = App\Behavior::where('id', $id)->first();
       $behavior->accepted = 1;
       $behavior->save();
